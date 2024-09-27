@@ -1,15 +1,15 @@
-# resource "aws_instance" "TerraformInstance" {
-#    ami                         = "ami-0c55b159cbfafe1f0" # Ubuntu Server 20.04 LTS (Free Tier eligible in us-east-1)
-#   instance_type               = "t2.medium"   
-#   subnet_id                   = aws_subnet.terraform-subnet.id
-#   associate_public_ip_address = true
-#   # Attach the security group
-#   vpc_security_group_ids = [aws_security_group.allow_http_ssh.id]
+resource "aws_instance" "TerraformInstance" {
+   ami                         = "ami-0c55b159cbfafe1f0" # Ubuntu Server 20.04 LTS (Free Tier eligible in us-east-1)
+  instance_type               = "t2.medium"   
+  subnet_id                   = aws_subnet.terraform-subnet.id
+  associate_public_ip_address = true
+  # Attach the security group
+  vpc_security_group_ids = [aws_security_group.allow_http_ssh.id]
 
-#   tags = {
-#     Name = "TerraformInstance"
-#   }
-# }
+  tags = {
+    Name = "TerraformInstance"
+  }
+}
 
 # resource "aws_security_group" "allow_http_ssh" {
 #   name        = "allow_http_ssh"
