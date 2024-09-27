@@ -41,6 +41,12 @@ pipeline {
                 }
             }
         }
+        stage('Terraform Apply') {
+            steps {
+                // Run terraform apply to create resources
+                    sh 'terraform apply -auto-approve'
+            }
+        }
     }
 
     post {
