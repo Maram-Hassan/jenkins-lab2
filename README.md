@@ -1,5 +1,5 @@
 # jenkins-lab2
-#Task
+# Task
 1. Create an agent that can run terraform commands
 2. Create Jenkinsfile in your GitHub repo of terraform code 
 3. Run pipeline using this Jenkinsfile to do terraform plan
