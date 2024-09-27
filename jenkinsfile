@@ -25,7 +25,7 @@ pipeline {
         stage('Terraform Init') {
             steps {
                 // Use AWS credentials
-                withCredentials([[$class: 'AmazonWebServicesCredentials', credentialsId: 'aws-credentials']]) {
+                withAWS(credentials: 'aws-credentials') {
                     // Run terraform init to initialize the directory
                     sh 'terraform init'
                 }
@@ -35,7 +35,7 @@ pipeline {
         stage('Terraform Plan') {
             steps {
                 // Use AWS credentials
-                withCredentials([[$class: 'AmazonWebServicesCredentials', credentialsId: 'aws-credentials']]) {
+                withAWS(credentials: 'aws-credentials') {
                     // Run terraform plan to see the changes
                     sh 'terraform plan'
                 }
