@@ -43,8 +43,11 @@ pipeline {
         }
         stage('Terraform Apply') {
             steps {
+                // Use AWS credentials
+                withAWS(credentials: 'aws-credentials') {
                 // Run terraform apply to create resources
                     sh 'terraform apply -auto-approve'
+                }
             }
         }
     }
