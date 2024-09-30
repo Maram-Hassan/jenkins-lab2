@@ -1,4 +1,4 @@
-#create subnet
+# Create subnet
 resource "aws_subnet" "terraform-subnet" {
   vpc_id     = aws_vpc.terraform-vpc.id
   cidr_block = var.subnet_block
@@ -7,8 +7,9 @@ resource "aws_subnet" "terraform-subnet" {
     Name = var.subnet_name
   }
 }
-#create routeTable
-resource "aws_route_table" "terrfaorm-routeTable" {
+
+# Create route table
+resource "aws_route_table" "terraform-routeTable" {
   vpc_id = aws_vpc.terraform-vpc.id
 
   route {
@@ -21,10 +22,15 @@ resource "aws_route_table" "terrfaorm-routeTable" {
     gateway_id      = aws_internet_gateway.gw.id
   }
 
-  tags = {
-    Name = var.route-table-name
-  }
+ 
 }
+
+# Associate subnet with route table
+resource "aws_route_table_association" "subnet-route-table-association" {
+  subnet_id      = aws_subnet.terraform-subnet.id
+  route_table_id = aws_route_table.terraform-routeTable.id
+}
+
 
 
 
