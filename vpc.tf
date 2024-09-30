@@ -1,19 +1,19 @@
-# Create a VPC
-resource "aws_vpc" "terraform-vpc" {
-  cidr_block = var.vpc_cidr_block
+# # Create a VPC
+# resource "aws_vpc" "terraform-vpc" {
+#   cidr_block = var.vpc_cidr_block
 
-  tags = {
-    Name = var.vpc_name
-  }
-}
+#   tags = {
+#     Name = var.vpc_name
+#   }
+# }
 
-# Create an Internet Gateway
-resource "aws_internet_gateway" "gw" {
-  vpc_id = aws_vpc.terraform-vpc.id
+# # Create an Internet Gateway
+# resource "aws_internet_gateway" "gw" {
+#   vpc_id = aws_vpc.terraform-vpc.id
 
-  tags = {
-    Name = var.internet_gateway_name
-  }
-}
+#   tags = {
+#     Name = var.internet_gateway_name
+#   }
+# }
 
 
