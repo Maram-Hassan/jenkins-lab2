@@ -47,9 +47,15 @@ pipeline {
                 withAWS(credentials: 'aws-credentials') {
                 // Run terraform apply to create resources
                     sh 'terraform apply -auto-approve'
+<<<<<<< HEAD
             }
         }
 
+=======
+                }
+            }
+        }
+>>>>>>> 21c88bd3989c342c1cb49809682bcf3ae8ab20d1
     }
 
     post {
