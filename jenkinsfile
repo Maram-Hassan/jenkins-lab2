@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout your repository
-                git branch: 'main', url: 'https://github.com/Maram-Hassan/jenkins-lab2.git'
+                git branch: 'main', url: 'https://github.com/Maram-Hassan/terraform.git'
             }
         }
 
@@ -43,6 +43,8 @@ pipeline {
         }
         stage('Terraform Apply') {
             steps {
+                // Use AWS credentials
+                withAWS(credentials: 'aws-credentials') {
                 // Run terraform apply to create resources
                     sh 'terraform apply -auto-approve'
             }
