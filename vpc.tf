@@ -15,3 +15,7 @@ resource "aws_internet_gateway" "gw" {
   }
 }
 
+resource "aws_route_table_association" "b" {
+  gateway_id     = aws_internet_gateway.gw.id
+  route_table_id = aws_route_table.terrfaorm-routeTable.id
+}
