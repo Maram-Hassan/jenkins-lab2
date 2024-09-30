@@ -33,7 +33,7 @@ resource "aws_route_table" "terraform-routeTable" {
 }
 
 # Associate the Route Table with the Subnet
-resource "aws_route_table_association" "b" {
+resource "aws_route_table_association" "terraform-routeTable" {
   subnet_id      = aws_subnet.terraform-subnet.id # Make sure to reference the correct subnet
   route_table_id = aws_route_table.terraform-routeTable.id # Corrected reference
 }
