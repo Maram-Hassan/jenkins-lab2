@@ -25,15 +25,7 @@ resource "aws_route_table" "terraform-routeTable" {
     gateway_id = aws_internet_gateway.gw.id
   }
 
-  
-
   tags = {
-    Name = "TerraformRouteTable"
+    Name = var.route_table_name
   }
-}
-
-# Associate the Route Table with the Subnet
-resource "aws_route_table_association" "terraform-routeTable" {
-  subnet_id      = aws_subnet.terraform-subnet.id # Make sure to reference the correct subnet
-  route_table_id = aws_route_table.terraform-routeTable.id # Corrected reference
 }

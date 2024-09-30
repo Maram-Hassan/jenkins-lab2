@@ -11,7 +11,10 @@ variable "vpc_name" {
   type        = string
   default     = "terraform-vpc"
 }
-
+variable "route_table_name" {
+  description = "Name of the Route Table"
+  type        = string
+}
 variable "internet_gateway_name" {
   description = "The name of the Internet Gateway"
   type        = string
