@@ -1,6 +1,6 @@
 resource "aws_instance" "TerraformInstance" {
-   ami                         = "ami-0ebfd941bbafe70c6" # Ubuntu Server 20.04 LTS (Free Tier eligible in us-east-1)
-  instance_type               = "t2.medium"   
+  ami                         = "ami-0c2b8ca1dad447f8a" # Amazon Linux 2 AMI (Free Tier eligible in us-east-1)
+  instance_type               = "t2.micro" # Free Tier eligible instance type
   subnet_id                   = aws_subnet.terraform-subnet.id
   associate_public_ip_address = true
   # Attach the security group
@@ -11,39 +11,9 @@ resource "aws_instance" "TerraformInstance" {
   }
 }
 
-# resource "aws_security_group" "allow_http_ssh" {
-#   name        = "allow_http_ssh"
-#   description = "Security group to allow HTTP and SSH traffic"
-#   vpc_id      = aws_vpc.terraform-vpc.id # Associate with the correct VPC
-
-#   # Ingress rules (incoming traffic)
-#   ingress {
-#     description = "Allow HTTP (IPv4)"
-#     from_port   = 80
-#     to_port     = 80
-#     protocol    = "tcp"
-
-#     cidr_blocks = ["0.0.0.0/0"] # Allows HTTP traffic from any IPv4 address
-#   }
-
-#   ingress {
-#     description      = "Allow HTTP (IPv6)"
-#     from_port        = 80
-#     to_port          = 80
-#     protocol         = "tcp"
-#     ipv6_cidr_blocks = ["::/0"] # Allows HTTP traffic from any IPv6 address
-#   }
-
-#   tags = {
-#     Name = "allow_http_ssh"
-#   }
-# }
-
-
-
 resource "aws_security_group" "allow_http_ssh" {
   name        = "allow_http_ssh"
-  description = "Security group to allow HTTP, custom port 8081, and SSH traffic"
+  description = "Security group to allow HTTP, custom port 5000, and SSH traffic"
   vpc_id      = aws_vpc.terraform-vpc.id # Associate with the correct VPC
 
   # Ingress rules (incoming traffic)
@@ -54,18 +24,16 @@ resource "aws_security_group" "allow_http_ssh" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-
     cidr_blocks = ["0.0.0.0/0"] # Allows HTTP traffic from any IPv4 address
   }
 
-  # Allow custom port 8081
+  # Allow traffic on port 5000 (your application port)
   ingress {
-    description = "Allow Custom Port 8081 (IPv4)"
-    from_port   = 8081
-    to_port     = 8081
+    description = "Allow traffic on port 5000 (IPv4)"
+    from_port   = 5000
+    to_port     = 5000
     protocol    = "tcp"
-
-    cidr_blocks = ["0.0.0.0/0"] # Allows traffic on port 8081 from any IPv4 address
+    cidr_blocks = ["0.0.0.0/0"] # Allows traffic on port 5000 from any IPv4 address
   }
 
   # Allow SSH traffic
@@ -74,12 +42,11 @@ resource "aws_security_group" "allow_http_ssh" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-
     cidr_blocks = ["0.0.0.0/0"] # Allows SSH traffic from any IPv4 address
   }
-
 
   tags = {
     Name = "allow_http_ssh"
   }
 }
+
