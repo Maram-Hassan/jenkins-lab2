@@ -3,6 +3,8 @@ resource "aws_instance" "TerraformInstance" {
   instance_type               = "t2.micro" # Free Tier eligible instance type
   subnet_id                   = aws_subnet.terraform-subnet.id
   associate_public_ip_address = true
+  key_name                    = "new-key" # Add this line
+
   # Attach the security group
   vpc_security_group_ids = [aws_security_group.allow_http_ssh.id]
 
