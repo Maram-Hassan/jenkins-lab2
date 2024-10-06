@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout your repository
-                git branch: 'main', url: 'https://github.com/Maram-Hassan/terraform.git'
+                git branch: 'main', url: 'https://github.com/Maram-Hassan/jenkins-lab2.git'
             }
         }
 
